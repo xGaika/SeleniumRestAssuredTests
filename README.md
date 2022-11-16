@@ -1,2 +1,0 @@
-# SeleniumRestAssuredTests
-Selenium + RestAssured
