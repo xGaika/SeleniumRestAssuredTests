@@ -4,6 +4,7 @@ import API.pojos.CreateUserRequest;
 import API.pojos.CreateUserResponse;
 import API.utils.ExpectedResponse;
 import API.utils.UserGenerator;
+import io.qameta.allure.Description;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
@@ -32,6 +33,7 @@ public class ApiTests {
 
     @Test
     @Order(1)
+    @Description("Получение гостевой токен")
     public void getGuestToken(){
          guest_access_token = given()
                  .spec(REQ_SPEC)
@@ -48,6 +50,7 @@ public class ApiTests {
 
     @Test
     @Order(2)
+    @Description("Регистрация нового пользователя")
     public void registerUser(){
          CreateUserResponse rs = given()
                  .spec(REQ_SPEC)
@@ -69,11 +72,12 @@ public class ApiTests {
 
     @Test
     @Order(3)
+    @Description("Авторизация под зарегестрированным пользователем")
     public void authorizationUser(){
         user_access_token = given()
                 .spec(REQ_SPEC)
                 .header("Authorization", "Basic " + basic_token)
-                .body("{\"grant_type\":\"password\", \"username\":\"" + user.getUsername() + "\", \"password\":\"" + user.getPassword_change() + "\"}").log().all()
+                .body("{\"grant_type\":\"password\", \"username\":\"" + user.getUsername() + "\", \"password\":\"" + user.getPassword_change() + "\"}")
                 .when().post("/v2/oauth2/token")
                 .then()
                 .assertThat().statusCode(200)
@@ -85,6 +89,7 @@ public class ApiTests {
 
     @Test
     @Order(4)
+    @Description("Получение данных авторизованного пользователя")
     public void getUserProfile(){
         CreateUserResponse rs = given()
                 .spec(REQ_SPEC)
@@ -100,6 +105,7 @@ public class ApiTests {
 
     @Test
     @Order(5)
+    @Description("Попытка получить данные другого пользователя")
     public void getAnotherUserProfile(){
         given()
                 .spec(REQ_SPEC)
