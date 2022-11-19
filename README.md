@@ -1,2 +1,3 @@
 - Запустить тесты и хостануть отчет `mvn clean test -Dtest=ApiTests,UiTests && mvn allure:serve`
 - Сгенерировать отчет после прогона тестов `mvn allure:serve` по пути `target/site/allure-maven-plugin`
+- Хостануть сгенерированный отчет `npm install http-server -g || brew install http-server -g`, `http-server target/site/allure-maven-plugin`
