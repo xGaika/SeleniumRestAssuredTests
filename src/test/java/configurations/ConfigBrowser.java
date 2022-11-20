@@ -17,6 +17,7 @@ public class ConfigBrowser {
             this.options.addArguments("--disable-browser-side-navigation");
             this.options.addArguments("--disable-gpu");
             this.options.addArguments("--window-size=1920,1080");
+            this.options.addArguments("--headless");
             return this.options;
         }
 }

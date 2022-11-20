@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  autotests-ui-api:
+    build:
+      context: ./
+    working_dir: /SeleniumRestAssuredTests
+    command: sh -c "mvn test -Dtest=ApiTests,UiTests"
+    volumes:
+      - ./:/SeleniumRestAssuredTests
